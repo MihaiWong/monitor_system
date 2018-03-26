@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>myProject</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <!-- 引入 lib/echarts.custom.min.js -->
+    <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts.min.js"></script>
+    <script>
+        function t() {
+            $.ajax({
+                url: "http://127.0.0.1:5000/test",
+                type: "post",
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (data) {
+                    temp = data['key'];
+                    echarts.init(document.getElementById('main')).setOption({
+                        series: {
+                            type: 'pie',
+                            data: temp
+                        }
+                    });
+                }
+            });
+
+        }
+
+
+        //        $(document).ready(function () {
+        //            $("button").click(function () {
+        //                alert('button')
+        //                $.post("http://127.0.0.1:5000/test", function (data, status) {
+        //                    alert(data['key'])
+        //                    temp = data['key'];
+        //                    // 绘制图表。
+        //                    echarts.init(document.getElementById('main')).setOption({
+        //                        series: {
+        //                            type: 'pie',
+        //                            data: temp
+        //                        }
+        //                    });
+        //                });
+        //            });
+        //        });
+
+
+    </script>
+</head>
+<body>
+<a name="a1" href="javascript:void(0);" onclick="t()">饼图</a>
+<div id="main" style="width: 600px;height:400px;"></div>
+</body>
+</html>
